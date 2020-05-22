@@ -1,3 +1,32 @@
-task helloWorld << {
-   println 'Welcome to JCG Gradle Tutorial'
-}
+apply plugin: 'eclipse'
+  apply plugin: 'application'
+
+  mainClassName = 'hello.HelloWorld'
+
+  // tag::repositories[]
+  repositories {
+      mavenCentral()
+  }
+  // end::repositories[]
+
+  // tag::jar[]
+  jar {
+      baseName = 'hello-world-gradle'
+      version =  '0.1.0'
+  }
+  // end::jar[]
+
+  // tag::dependencies[]
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+
+  dependencies {
+      compile "joda-time:joda-time:2.2"
+  }
+  // end::dependencies[]
+
+  // tag::wrapper[]
+  task wrapper(type: Wrapper) {
+      gradleVersion = '2.3'
+  }
+  // end::wrapper[]
